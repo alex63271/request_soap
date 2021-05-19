@@ -7,21 +7,16 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Xml.Serialization;
 using System.Text.Json;
-//using Newtonsoft.Json;
 using System.Xml;
 
 namespace svs_json
 {
 
-
-   
-
-
     class Program
     {
         static async void  PostRequestAsync()
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://ruzditest.eisnot.ru:8280/services/ruzdiUploadNotificationPackageService_v1_1");
+            WebRequest request = WebRequest.Create("http://ruzditest.eisnot.ru:8280/services/ruzdiUploadNotificationPackageService_v1_1");
             
                 request.Method = "POST";
                 request.ContentType = "text/xml";
@@ -41,10 +36,8 @@ namespace svs_json
 
                 writer.Write(Array, 0, Array.Length);
 
-
-               
             }
-                    HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync();
+                 WebResponse response = await request.GetResponseAsync();
             Console.WriteLine("Запрос создан");
 
 
