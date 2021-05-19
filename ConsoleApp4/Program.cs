@@ -51,24 +51,8 @@ namespace svs_json
             XmlDocument xDoc = new XmlDocument();
             xDoc.Load("C://123.xml");
             string data1=xDoc.OuterXml;
-            string data = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:v1=\"http://fciit.ru/eis2/ruzdi/uploadNotificationPackageService/v1_0\">"+
-                            "<soapenv:Body>"+
-                                "<v1:uploadNotificationPackageRequest>"+
-                                    "< v1:pledgeNotificationPackage >"+
-                                        "< v1:packageId >?</ v1 : packageId >"+
-                                        "< v1:uip >?</ v1 : uip >"+
-                                        "< v1:senderType >?</ v1 : senderType >"+
-                                            "< v1:pledgeNotificationList >"+
-                                                "< v1:pledgeNotificationListElement >"+
-                                                "< v1:notificationId >?</ v1 : notificationId >"+
-                                                "< v1:documentAndSignature > cid:599096538477 </ v1:documentAndSignature >"+
-                                                "</ v1:pledgeNotificationListElement >"+
-                                            "</ v1:pledgeNotificationList >"+
-                                    "</ v1:pledgeNotificationPackage >"+
-                                "</ v1:uploadNotificationPackageRequest >"+
-                                "</soapenv:Body>"+
-                            "</soapenv:Envelope>";
-
+            Console.WriteLine(data1);
+            
             byte[] Array = Encoding.UTF8.GetBytes(data1);
 
             request.ContentLength = Array.Length;
@@ -95,7 +79,9 @@ namespace svs_json
                         string q = reader.ReadToEnd();
                         Console.WriteLine(q);
 
-
+                        XmlDocument xDocout = new XmlDocument();
+                        xDocout.LoadXml(q);
+                        xDocout.Save("1234.xml");
                         //Class1[] otvet = JsonSerializer.Deserialize<Class1[]>(q);
                         //Console.WriteLine("Message:");
                         //Console.WriteLine(otvet[0].Message);
